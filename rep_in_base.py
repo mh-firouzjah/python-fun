@@ -9,7 +9,9 @@ def rep_in_base(num: int, base: int = 10) -> str:
     represent `num` in base of `base`
     '''
     if base not in range(2, 37):
-        raise ValueError(f'base: {base}', 'base has to be between 2 and 36 inclusive')
+        raise ValueError(
+            f'base: {base}',
+            'base has to be between 2 and 36 inclusive')
 
     if num == 0:
         return '0'
@@ -20,8 +22,9 @@ def rep_in_base(num: int, base: int = 10) -> str:
         '''
         _match = {
             **{i: i for i in range(10)},
-            **{index+10: char for index, char in enumerate(string.ascii_lowercase)},
-        }
+            **
+            {index + 10: char for index, char
+             in enumerate(string.ascii_lowercase)}, }
         return ent // base, _match[rem] if(
             rem := ent % base) in _match.keys() else str(rem)
 
@@ -35,3 +38,4 @@ def rep_in_base(num: int, base: int = 10) -> str:
 
 print(rep_in_base(23, 16))
 print(rep_in_base(232, 36))
+print(rep_in_base(10, 2))
