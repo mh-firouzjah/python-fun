@@ -10,22 +10,27 @@ def next_promutation(string: str) -> str:
     if lst == sorted(lst, reverse=True):
         return 'no answer'
 
-    pivot = len(lst) - 1
+    pivot = - 1
     while lst[pivot] <= lst[pivot - 1]:
         pivot -= 1
 
-    left, right = lst[:pivot], lst[pivot:]  # 29357632 -> [2935], [7632]
+    # left, right = lst[:pivot], lst[pivot:]  # 29357632 -> [2935], [7632]
 
-    inx = len(right) - 1
-    while right[inx] <= left[-1]:
+    inx = - 1
+    while lst[inx] <= lst[pivot - 1]:
         inx -= 1
 
-    left[-1], right[inx] = right[inx], left[-1]  # [2936], [7532]
+    # left[-1], right[inx] = right[inx], left[-1]  # [2936], [7532]
+    lst[pivot - 1], lst[inx] = lst[inx], lst[pivot - 1]  # [2936], [7532]
 
-    right.sort()  # [2936], [2357]
+    # right.sort()  # [2936], [2357]
+    lst[pivot:] = sorted(lst[pivot:])  # [2936], [2357]
 
-    return ''.join(left + right)
+    # return ''.join(left + right)
+    return ''.join(lst)
 
+
+print(next_promutation('29357632'))
 
 # def func(string: str):
 #     from itertools import permutations as permutations_fn
